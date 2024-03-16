@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="150dp"
+        android:paddingTop="50dp"
         android:text="REGISTER"
         android:paddingBottom="30dp"
         android:textColor="#000000"
@@ -49,6 +49,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#F3F0F0"
+        android:layout_marginBottom="30dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:layout_gravity="center"
+            android:drawableLeft="@drawable/password"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/matkhau"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:background="#F3F0F0"
+                android:hint="MẬT KHẨU"
+                android:paddingLeft="10dp"
+                android:inputType="textPassword"
+                android:textColor="#000000" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F3F0F0"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -64,11 +94,11 @@
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/matkhau"
+                android:id="@+id/xacnhanmatkhau"
                 android:layout_width="350dp"
                 android:layout_height="50dp"
                 android:background="#F3F0F0"
-                android:hint="MẬT KHẨU"
+                android:hint="XÁC NHẬN MẬT KHẨU"
                 android:paddingLeft="10dp"
                 android:inputType="textPassword"
                 android:textColor="#000000" />

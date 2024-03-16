@@ -9,12 +9,15 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher_round"
+        android:label="TaoToon"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
         tools:targetApi="31">
+        <activity
+            android:name=".UpdatePasswordActivity"
+            android:exported="false" />
         <activity
             android:name=".SecondActivity"
             android:exported="false" />
@@ -26,7 +29,7 @@
             android:exported="false" />
         <activity
             android:name=".activity_login"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".RetrieveDataActivity"
             android:exported="false" />

@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import org.jetbrains.annotations.NotNull;
 
 public class activity_register extends AppCompatActivity {
-    EditText useredit, passedit;
+    EditText useredit, passedit, repassedit;
     Button  btncreate, btnthoat;
     TextView tvHA;
     FirebaseAuth mAuth;
@@ -35,6 +35,7 @@ public class activity_register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         useredit = findViewById(R.id.dangnhap);
         passedit = findViewById(R.id.matkhau);
+        repassedit = findViewById(R.id.xacnhanmatkhau);
         tvHA = findViewById(R.id.tvHA);
         btncreate = findViewById(R.id.btncreate);
         btnthoat = findViewById(R.id.btnthoat);
@@ -67,9 +68,11 @@ public class activity_register extends AppCompatActivity {
 
 
     private void register() {
-        String user, pass;
+        String user, pass, repass;
         user = useredit.getText().toString();
         pass = passedit.getText().toString();
+        repass = repassedit.getText().toString();
+
         if(TextUtils.isEmpty(user)){
             Toast.makeText(this,"Email không được trống",Toast.LENGTH_SHORT).show();
             return;
@@ -77,6 +80,15 @@ public class activity_register extends AppCompatActivity {
         if(TextUtils.isEmpty(pass)){
             Toast.makeText(this,"Mật khẩu không được trống",Toast.LENGTH_SHORT).show();
             return;
+        }
+        if(pass.length()<6)
+        {
+            Toast.makeText(this, "Mật khẩu không được dưới 6 ký tự", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(pass==repass)
+        {
+            Toast.makeText(this, "Mật khẩu và Xác nhận mật khẩu không trùng khớp", Toast.LENGTH_SHORT).show();
         }
         mAuth.createUserWithEmailAndPassword(user, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -89,18 +101,16 @@ public class activity_register extends AppCompatActivity {
                                 Toast.makeText(activity_register.this, "Đăng ký thành công, vui lòng xác nhận Email", Toast.LENGTH_SHORT).show();
                                 useredit.setText("");
                                 passedit.setText("");
+                                repassedit.setText("");
                             }else {
                                 Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
 
                             }
                         }
                     });
-
-
-
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"ĐĂNG KÝ THẤT BẠI", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Email này đã tồn tại, vui lòng nhập Email khác", Toast.LENGTH_SHORT).show();
                 }
             }
         });
