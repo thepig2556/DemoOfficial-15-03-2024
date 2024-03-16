@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,9 +22,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import org.jetbrains.annotations.NotNull;
 
 public class activity_login extends AppCompatActivity {
-    private EditText useredit, passedit;
-    private Button btnlogin, btnregister;
-    private FirebaseAuth mAuth;
+    EditText useredit, passedit;
+    Button btnlogin, btnregister;
+    TextView txtForgotPassword;
+    FirebaseAuth mAuth;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -33,6 +35,7 @@ public class activity_login extends AppCompatActivity {
         useredit = findViewById(R.id.dangnhap);
         passedit = findViewById(R.id.matkhau);
         btnlogin = findViewById(R.id.btnlogin);
+        txtForgotPassword = findViewById(R.id.txtForgotPassword);
         btnregister = findViewById(R.id.btnregister);
         mAuth = FirebaseAuth.getInstance();
         btnlogin.setOnClickListener(new View.OnClickListener() {
@@ -40,13 +43,19 @@ public class activity_login extends AppCompatActivity {
             public void onClick(View v) {
                 login();
             }
-
-
         });
+
         btnregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity_login.this,activity_register.class);
+                startActivity(intent);
+            }
+        });
+        txtForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity_login.this, ForgotPasswordActivity.class);
                 startActivity(intent);
             }
         });
@@ -71,7 +80,7 @@ public class activity_login extends AppCompatActivity {
                 if(task.isSuccessful()){
                     if(mAuth.getCurrentUser().isEmailVerified()){
                         Toast.makeText(getApplicationContext(),"Đăng nhập thành công",Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(activity_login.this,MainActivity.class);
+                        Intent intent = new Intent(activity_login.this, MainActivity.class);
                         startActivity(intent);
 
                     }else{

@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseRecyclerAdapter<Model,ViewHolder> firebaseRecyclerAdapter;
     FirebaseRecyclerOptions<Model>options;
     EditText inputSearch;
+    //
+    //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
         if(item.getItemId()==R.id.logout){
-            Intent intent = new Intent(MainActivity.this,activity_login.class);
+            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

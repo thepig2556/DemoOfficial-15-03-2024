@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,9 +22,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import org.jetbrains.annotations.NotNull;
 
 public class activity_register extends AppCompatActivity {
-    private EditText useredit, passedit;
-    private Button  btncreate, btnthoat;
-    private FirebaseAuth mAuth;
+    EditText useredit, passedit;
+    Button  btncreate, btnthoat;
+    TextView tvHA;
+    FirebaseAuth mAuth;
 
 
     @SuppressLint("MissingInflatedId")
@@ -33,9 +35,10 @@ public class activity_register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         useredit = findViewById(R.id.dangnhap);
         passedit = findViewById(R.id.matkhau);
-
+        tvHA = findViewById(R.id.tvHA);
         btncreate = findViewById(R.id.btncreate);
         btnthoat = findViewById(R.id.btnthoat);
+
         mAuth = FirebaseAuth.getInstance();
 
         btncreate.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +52,14 @@ public class activity_register extends AppCompatActivity {
         btnthoat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity_register.this,MainActivity.class);
+                Intent intent = new Intent(activity_register.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        tvHA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity_register.this, activity_login.class);
                 startActivity(intent);
             }
         });
@@ -95,4 +105,5 @@ public class activity_register extends AppCompatActivity {
             }
         });
     }
+
 }
