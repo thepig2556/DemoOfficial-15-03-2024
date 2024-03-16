@@ -2,9 +2,6 @@ package com.example.demo;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuView;
-import androidx.core.view.MenuCompat;
-import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,17 +16,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.SearchView;
-import android.widget.Toast;
+import android.widget.LinearLayout;
 
+import com.example.demo.listchap.ListChapterActivity;
+import com.example.demo.object.Model;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     LinearLayoutManager mLinearLayoutManager;
@@ -39,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseRecyclerAdapter<Model,ViewHolder> firebaseRecyclerAdapter;
     FirebaseRecyclerOptions<Model>options;
     EditText inputSearch;
+    LinearLayout linearItem;
     //
     //
     @Override
@@ -53,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseDatabase=FirebaseDatabase.getInstance();
         mDatabaseReference= mFirebaseDatabase.getReference("Data");
         showData("");
+        setClick();
+//        linearItem=findViewById(R.id.linear_item);
         inputSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -84,8 +82,23 @@ public class MainActivity extends AppCompatActivity {
 //        options = new FirebaseRecyclerOptions.Builder<Model>().setQuery(quary,Model.class).build();
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Model, ViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Model model) {
+            protected void onBindViewHolder(@NonNull ViewHolder holder, final int position, @NonNull Model model) {
                 holder.setDetails(getApplicationContext(),model.getTitle(), model.getImage(), model.getAuthor());
+
+//                Click chapter
+                //Set on Click Item List Chapter
+holder.mview.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent=new Intent( MainActivity.this,ListChapterActivity.class);
+        Bundle bundle=new Bundle();
+        bundle.putSerializable("key",model);
+        intent.putExtras(bundle);
+        startActivity(intent);
+//        dữ iệu ảo list chapter
+
+    }
+});
             }
 
             @NonNull
@@ -96,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.setOnClickListener(new ViewHolder.ClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-//                        Toast.makeText(MainActivity.this,"Hello",Toast.LENGTH_SHORT).show();
+         //               Toast.makeText(MainActivity.this,"Hello",Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -146,5 +159,10 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    private void setClick()
+    {
+
+
+}
 
 }

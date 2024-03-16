@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.login_out;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,9 +13,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.demo.ForgotPasswordActivity;
+import com.example.demo.MainActivity;
+import com.example.demo.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -48,7 +50,7 @@ public class activity_login extends AppCompatActivity {
         btnregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity_login.this,activity_register.class);
+                Intent intent = new Intent(activity_login.this, activity_register.class);
                 startActivity(intent);
             }
         });

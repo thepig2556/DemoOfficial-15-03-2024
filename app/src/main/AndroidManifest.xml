@@ -16,6 +16,12 @@
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".listchap.DetailChapterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".listchap.ListChapterActivity"
+            android:exported="false" />
+        <activity
             android:name=".UpdatePasswordActivity"
             android:exported="false" />
         <activity
@@ -25,10 +31,10 @@
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_register"
+            android:name=".login_out.activity_register"
             android:exported="false" />
         <activity
-            android:name=".activity_login"
+            android:name=".login_out.activity_login"
             android:exported="false" />
         <activity
             android:name=".RetrieveDataActivity"

@@ -1,19 +1,19 @@
-package com.example.demo;
+package com.example.demo.adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.demo.object.Model;
+import com.example.demo.R;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class ListAdapter extends ArrayAdapter {
     private Activity mContext;
     List<Model> modelList;
     public ListAdapter(Activity mContext,List<Model> modelList){
-        super(mContext,R.layout.list_items,modelList);
+        super(mContext, R.layout.list_items,modelList);
         this.mContext=mContext;
         this.modelList=modelList;
     }

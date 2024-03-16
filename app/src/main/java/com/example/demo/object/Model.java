@@ -1,6 +1,8 @@
-package com.example.demo;
+package com.example.demo.object;
 
-public class Model {
+import java.io.Serializable;
+
+public class Model implements Serializable {
     String id;
     String title;
     String image;

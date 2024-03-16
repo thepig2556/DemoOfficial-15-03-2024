@@ -38,6 +38,9 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         Picasso.get().load(image).into(mImage);
     }
     private ViewHolder.ClickListener mClickListener;
+
+
+
     public interface ClickListener{
         void onItemClick(View view, int position);
         void onItemLongClick(View view, int position);
@@ -45,4 +48,11 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     public void setOnClickListener(ViewHolder.ClickListener clickListener){
         mClickListener=clickListener;
     }
+    //on click chapter
+//    public void setChapter(Context ctx, String title, String image){
+//        TextView tvTenMG=mview.findViewById(R.id.txtTenMG);
+//        ImageView img_detail=mview.findViewById(R.id.img_detail);
+//        tvTenMG.setText(title);
+//        Picasso.get().load(image).into(img_detail);
+//    }
 }
