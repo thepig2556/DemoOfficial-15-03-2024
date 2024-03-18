@@ -7,14 +7,24 @@ public class Model implements Serializable {
     String title;
     String image;
     String author;
+    String luotxem;
     public Model() {
     }
 
-    public Model(String id, String title, String image, String author) {
+    public Model(String id, String title, String image, String author, String luotxem) {
         this.id=id;
         this.title = title;
         this.image = image;
         this.author = author;
+        this.luotxem = luotxem;
+    }
+
+    public String getLuotxem() {
+        return luotxem;
+    }
+
+    public void setLuotxem(String luotxem) {
+        this.luotxem = luotxem;
     }
 
     public String getId() {

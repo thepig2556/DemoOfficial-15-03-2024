@@ -29,13 +29,15 @@ public class ViewHolder extends RecyclerView.ViewHolder {
             }
         });
     }
-    public void setDetails(Context ctx, String title, String image, String author){
+    public void setDetails(Context ctx, String title, String image, String author, String view){
         TextView mTitle=mview.findViewById(R.id.rTitleMG);
         TextView mAuthor=mview.findViewById(R.id.rNameAuthor);
         ImageView mImage=mview.findViewById(R.id.rImage);
+        TextView mView=mview.findViewById(R.id.rView);
         mTitle.setText(title);
         mAuthor.setText(author);
         Picasso.get().load(image).into(mImage);
+        mView.setText(view);
     }
     private ViewHolder.ClickListener mClickListener;
 

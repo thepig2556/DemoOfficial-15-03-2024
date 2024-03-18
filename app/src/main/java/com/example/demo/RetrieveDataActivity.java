@@ -77,6 +77,7 @@ DatabaseReference mangaDBRef;
         EditText nameUpdate = mDialogView.findViewById(R.id.nameUpdate);
         EditText imageUpdate = mDialogView.findViewById(R.id.imgUpdate);
         EditText authorUpdate = mDialogView.findViewById(R.id.authorUpdate);
+        EditText viewUpdate = mDialogView.findViewById(R.id.viewUpdate);
         Button btnUpdate = mDialogView.findViewById(R.id.btnUpdate);
         Button btnDelete = mDialogView.findViewById(R.id.btnDelete);
         mDialog.setTitle("Updating "+title+" record");
@@ -87,11 +88,13 @@ DatabaseReference mangaDBRef;
                 String newName = nameUpdate.getText().toString();
                 String newImage = imageUpdate.getText().toString();
                 String newAuthor = authorUpdate.getText().toString();
-                updateData(id,newName,newImage,newAuthor);
+                String newView = viewUpdate.getText().toString();
+                updateData(id,newName,newImage,newAuthor,newView);
                 Toast.makeText(RetrieveDataActivity.this, "Record Update", Toast.LENGTH_SHORT).show();
                 nameUpdate.setText("");
                 imageUpdate.setText("");
                 authorUpdate.setText("");
+                viewUpdate.setText("");
             }
         });
         btnDelete.setOnClickListener(new View.OnClickListener() {
@@ -125,9 +128,9 @@ DatabaseReference mangaDBRef;
         });
     }
 
-    private void updateData(String id,String title,String image, String author){
+    private void updateData(String id,String title,String image, String author, String view){
         DatabaseReference DbRef = FirebaseDatabase.getInstance().getReference("Data").child(id);
-        Model models = new Model(id,title, image,author);
+        Model models = new Model(id,title, image,author, view);
         DbRef.setValue(models);
     }
 }
