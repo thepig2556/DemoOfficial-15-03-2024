@@ -40,8 +40,27 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Tác giả: "
+                    android:hint="Tác giả"
                     android:id="@+id/rNameAuthor"
+                    android:textStyle="bold"
+                    android:textColor="#C0C0C0"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lượt xem: "
+                    android:textStyle="bold"
+                    android:textSize="20sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Lượt xem "
+                    android:id="@+id/rViewMG"
                     android:textStyle="bold"
                     android:textColor="#C0C0C0"
                     android:textSize="20sp"/>

@@ -16,25 +16,23 @@
         <ImageView
             android:id="@+id/img_detail"
             android:layout_width="match_parent"
-            android:layout_height="190dp"
-            android:scaleType="centerInside"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="60dp"
+            android:layout_marginTop="30dp"
             android:src="@drawable/h4">
 
         </ImageView>
 
         <TextView
             android:id="@+id/txtTenMG"
-            android:layout_width="242dp"
-            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="82dp"
-            android:layout_marginTop="193dp"
-            android:layout_marginEnd="86dp"
-            android:layout_marginBottom="-102dp"
+            android:layout_marginTop="237dp"
             android:text="Tên Truyện"
-            android:textAlignment="center"
+            android:gravity="center"
             android:textColor="@color/black"
             android:textSize="35dp"
             android:textStyle="bold"></TextView>

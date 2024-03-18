@@ -22,7 +22,7 @@
             android:name=".listchap.ListChapterActivity"
             android:exported="false" />
         <activity
-            android:name=".UpdatePasswordActivity"
+            android:name=".login_out.UpdatePasswordActivity"
             android:exported="false" />
         <activity
             android:name=".SecondActivity"

@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.demo.listchap.ListChapterActivity;
 import com.example.demo.object.Model;
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Model, ViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull ViewHolder holder, final int position, @NonNull Model model) {
-                holder.setDetails(getApplicationContext(),model.getTitle(), model.getImage(), model.getAuthor());
+                holder.setDetails(getApplicationContext(),model.getTitle(), model.getImage(), model.getAuthor(), model.getLuotxem());
 
 //                Click chapter
                 //Set on Click Item List Chapter
@@ -96,7 +97,6 @@ holder.mview.setOnClickListener(new View.OnClickListener() {
         intent.putExtras(bundle);
         startActivity(intent);
 //        dữ iệu ảo list chapter
-
     }
 });
             }

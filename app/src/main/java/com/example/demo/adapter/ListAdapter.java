@@ -34,11 +34,13 @@ public class ListAdapter extends ArrayAdapter {
         TextView tvName = listItemView.findViewById(R.id.tvName);
         ImageView tvImage = listItemView.findViewById(R.id.tvImage);
         TextView tvAuthor = listItemView.findViewById(R.id.tvAuthor);
+        TextView tvView = listItemView.findViewById(R.id.tvView);
 
         Model manga = modelList.get(position);
         tvName.setText(manga.getTitle());
         Picasso.get().load(manga.getImage()).into(tvImage);
         tvAuthor.setText(manga.getAuthor());
+        tvView.setText(manga.getLuotxem());
         return listItemView;
     }
 }
