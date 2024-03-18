@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -132,5 +135,23 @@ DatabaseReference mangaDBRef;
         DatabaseReference DbRef = FirebaseDatabase.getInstance().getReference("Data").child(id);
         Model models = new Model(id,title, image,author, view);
         DbRef.setValue(models);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater mnu = getMenuInflater();
+        mnu.inflate(R.menu.menu_second,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.home)
+        {
+            Intent intent = new Intent (this, MainActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

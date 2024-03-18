@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
@@ -23,7 +24,7 @@
             />
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:hint="Name"
             android:textColorHint="#ffffff"
             android:id="@+id/nameAdd"
@@ -34,7 +35,7 @@
             />
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:hint="Image"
             android:textColorHint="#ffffff"
             android:id="@+id/imgAdd"
@@ -45,7 +46,7 @@
             />
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:hint="Author"
             android:textColorHint="#ffffff"
             android:id="@+id/authorAdd"
@@ -56,7 +57,7 @@
             />
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:hint="View"
             android:textColorHint="#ffffff"
             android:id="@+id/viewAdd"

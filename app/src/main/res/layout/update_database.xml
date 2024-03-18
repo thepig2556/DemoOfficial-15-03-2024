@@ -21,7 +21,7 @@
             />
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:hint="Name"
             android:id="@+id/nameUpdate"
             android:textSize="30sp"
@@ -30,7 +30,7 @@
             />
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:hint="Image"
             android:id="@+id/imgUpdate"
             android:textSize="30sp"
@@ -39,7 +39,7 @@
             />
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:hint="Author"
             android:id="@+id/authorUpdate"
             android:textSize="30sp"
@@ -48,7 +48,7 @@
             />
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:hint="View"
             android:id="@+id/viewUpdate"
             android:textSize="30sp"

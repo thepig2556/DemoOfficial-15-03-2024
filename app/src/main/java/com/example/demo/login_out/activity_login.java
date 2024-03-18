@@ -7,6 +7,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -96,5 +99,22 @@ public class activity_login extends AppCompatActivity {
                 }
             }
         });
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater mnu = getMenuInflater();
+        mnu.inflate(R.menu.menu_second,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.home)
+        {
+            Intent intent = new Intent (this, MainActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

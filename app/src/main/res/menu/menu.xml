@@ -14,5 +14,4 @@
         app:showAsAction="always"
         android:title="User"
         android:icon="@drawable/icaccount"/>
-
 </menu>

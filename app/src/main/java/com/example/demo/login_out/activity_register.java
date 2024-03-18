@@ -103,6 +103,8 @@ public class activity_register extends AppCompatActivity {
                                 useredit.setText("");
                                 passedit.setText("");
                                 repassedit.setText("");
+                                Intent intent = new Intent(activity_register.this, activity_login.class);
+                                startActivity(intent);
                             }else {
                                 Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
 
