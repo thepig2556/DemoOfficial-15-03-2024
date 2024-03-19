@@ -1,31 +1,50 @@
 package com.example.demo;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.helper.widget.Carousel;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ViewFlipper;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.interfaces.ItemClickListener;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.demo.listchap.ListChapterActivity;
 import com.example.demo.object.Model;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     LinearLayoutManager mLinearLayoutManager;
@@ -37,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     EditText inputSearch;
     LinearLayout linearItem;
     //
-    //
+    ImageSlider mainSlider;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,20 +68,60 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView=findViewById(R.id.recyclerView);
         mFirebaseDatabase=FirebaseDatabase.getInstance();
         mDatabaseReference= mFirebaseDatabase.getReference("Data");
+        //
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        mainSlider=(ImageSlider)findViewById(R.id.imageSlider);
+        final List<SlideModel> remoteimages=new ArrayList<>();
+        mFirebaseDatabase.getReference().child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot data:snapshot.getChildren())
+                {
+                    remoteimages.add(new SlideModel(data.child("image").getValue().toString(),data.child("title").getValue().toString(), ScaleTypes.FIT));
+                }
+                mainSlider.setImageList(remoteimages,ScaleTypes.FIT);
+                mainSlider.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onItemSelected(int i) {
+                        Toast.makeText(MainActivity.this, remoteimages.get(i).getTitle().toString(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void doubleClick(int i) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        //
+        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                //
+            }
+        });
         showData("");
         setClick();
+        //
 //        linearItem=findViewById(R.id.linear_item);
         inputSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.toString()!=null)
@@ -75,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     private void showData(String data) {
         Query query = mDatabaseReference.orderByChild("title").startAt(data).endAt(data+"\uf8ff");
 //        Query quary = mDatabaseReference.orderByChild("author").startAt(data).endAt(data+"\uf8ff");
@@ -83,9 +141,8 @@ public class MainActivity extends AppCompatActivity {
 //        options = new FirebaseRecyclerOptions.Builder<Model>().setQuery(quary,Model.class).build();
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Model, ViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull ViewHolder holder, final int position, @NonNull Model model) {
+            protected void onBindViewHolder(@NonNull ViewHolder holder,final int position, @NonNull Model model) {
                 holder.setDetails(getApplicationContext(),model.getTitle(), model.getImage(), model.getAuthor(), model.getLuotxem());
-
 //                Click chapter
                 //Set on Click Item List Chapter
 holder.mview.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +153,7 @@ holder.mview.setOnClickListener(new View.OnClickListener() {
         bundle.putSerializable("key",model);
         intent.putExtras(bundle);
         startActivity(intent);
+        //
 //        dữ iệu ảo list chapter
     }
 });

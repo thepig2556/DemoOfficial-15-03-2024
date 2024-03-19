@@ -24,7 +24,7 @@ public class InsertAcitivity extends AppCompatActivity {
     EditText nameAdd,authorAdd,imgAdd, viewAdd;
     Button btnAdd, btnBack;
     DatabaseReference mangaDbRef;
-    long maxid=0;
+    long maxid=0; //Biến đặt trên firebase
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +36,7 @@ public class InsertAcitivity extends AppCompatActivity {
         viewAdd = findViewById(R.id.viewAdd);
         btnAdd = findViewById(R.id.btnAdd);
         btnBack = findViewById(R.id.btnBack);
+        //truy xuất dữ liệu đến KEY "Data"
         mangaDbRef = FirebaseDatabase.getInstance().getReference().child("Data");
         mangaDbRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -43,6 +44,7 @@ public class InsertAcitivity extends AppCompatActivity {
                 if (snapshot.exists())
                 {
                     maxid=snapshot.getChildrenCount();
+                    //Tăng dữ liệu maxid lên nếu tồn tại truyện
                 }
             }
 

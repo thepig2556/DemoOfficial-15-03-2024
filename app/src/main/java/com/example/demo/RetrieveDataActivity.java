@@ -48,7 +48,7 @@ DatabaseReference mangaDBRef;
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mangaList.clear();
-
+//hiện dữ liệu
                 for(DataSnapshot mangaDatasnap : dataSnapshot.getChildren()){
                     Model model = mangaDatasnap.getValue(Model.class);
                     mangaList.add(model);
@@ -65,12 +65,12 @@ DatabaseReference mangaDBRef;
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Model models = mangaList.get(position);
-                showUpdateDialog(models.getId(),models.getTitle());
+                showUpdateDialog(models.getId(),models.getTitle(), models.getImage(), models.getAuthor(), models.getLuotxem());
                 return false;
             }
         });
     }
-    private void showUpdateDialog(String id,String title)
+    private void showUpdateDialog(String id,String title, String image, String author, String view)
     {
         AlertDialog.Builder mDialog =new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -83,7 +83,12 @@ DatabaseReference mangaDBRef;
         EditText viewUpdate = mDialogView.findViewById(R.id.viewUpdate);
         Button btnUpdate = mDialogView.findViewById(R.id.btnUpdate);
         Button btnDelete = mDialogView.findViewById(R.id.btnDelete);
-        mDialog.setTitle("Updating "+title+" record");
+
+        nameUpdate.setText(title);
+        imageUpdate.setText(image);
+        authorUpdate.setText(author);
+        viewUpdate.setText(view);
+
         mDialog.show();
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
